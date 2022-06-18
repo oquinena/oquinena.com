@@ -1,0 +1,11 @@
+on: [push]
+
+jobs:
+  build_and_deploy_job:
+    runs-on: ubuntu-latest
+    name: Build hugo site and deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Build and deploy
+        uses: ./ # Uses an action in the root directory
