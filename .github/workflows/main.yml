@@ -17,10 +17,10 @@ jobs:
         uses: peaceiris/actions-hugo@v2.4.13
 
       - name: Build
-        run: hugo --minify
+        run: hugo
 
       - name: Deploy
-        uses: Creepios/sftp-action@v1.0.3
+        uses: Creepios/sftp-action@v1.0.4
         with:
           host: ${{ secrets.URL }}
           port: 22
