@@ -3,7 +3,7 @@ name: oquinena.com
 on: [push]
 
 jobs:
-  Build and deploy oquinena.com:
+  Build_and_deploy:
     runs-on: ubuntu-20.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
