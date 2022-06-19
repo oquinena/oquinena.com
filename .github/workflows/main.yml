@@ -1,11 +1,30 @@
+name: oquinena.com
+
 on: [push]
 
 jobs:
-  build_and_deploy_job:
-    runs-on: ubuntu-latest
-    name: Build hugo site and deploy
+  deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Build and deploy
-        uses: ./ # Uses an action in the root directory
+      - uses: actions/checkout@v3
+        with:
+          submodules: true  
+          fetch-depth: 0    
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.4.13
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
+          uses: Creepios/sftp-action@v1.0.3
+          with:
+            host: ${{ secrets.URL }}
+            port: 22
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            localPath: './public/*'
+            remotePath: './'
