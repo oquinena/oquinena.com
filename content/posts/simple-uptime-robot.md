@@ -11,6 +11,8 @@ author: Daniel de Oquiñena
 
 The template will generate a basic uptime page that can be published on GitHub pages or to a custom url.
 
-![Screenshot of upptime from oquinena.com](upptime_oquinena_com.png)
+![Screenshot of upptime from status.oquinena.com](upptime_oquinena_com.png)
 
 The default workflow settings will run every five minutes and will commit response time, graphs and status to the same repo it's run from. As long as the repo is public GitHub will allow the actions to be run free of charge.
+
+To use your own domain simple update the repo settings for upptime under Pages/Custom domain, update your .upptimerc.yml and add the CNAME to your dns provider.
